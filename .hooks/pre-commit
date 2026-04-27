@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Pull changes first.
+git pull
+
+# Function to check if an element is present in an array.
+has_element() {
+    local e
+    for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+    return 1
+}
+
+# Get the current diff from git
+diff_pre=($(git diff --name-only))
+
+# Format files
+cargo fmt
+
+# Generate documentation
+cargo doc
+
+# Run tests
+cargo test
+
+# Run release build for Linux target
+target_linker="$(which x86_64-unknown-linux-gnu-gcc)"
+cargo build --release --target x86_64-unknown-linux-gnu --config "target.x86_64-unknown-linux-gnu.linker = '$target_linker'"
+mv target/x86_64-unknown-linux-gnu/release/semver-release target/x86_64-unknown-linux-gnu/release/semver_linux
+cp target/x86_64-unknown-linux-gnu/release/semver_linux .release/semver_linux
+
+# Get the diff from git after formatting
+diff_post=($(git diff --name-only))
+
+# Check if any files were changed and add them to the current commit
+for val in "${diff_post[@]}"; do
+    if ! has_element "$val" "${diff_pre[@]}"; then
+        git add "$val"
+    fi
+done
