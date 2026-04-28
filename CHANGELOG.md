@@ -1,6 +1,6 @@
-# Version: v0.4.7
+# Version: v0.5.0
 
-## Patches
+## Features
 
-- fix: updated release
+- feat: added no update check
 
