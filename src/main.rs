@@ -5,8 +5,8 @@ use std::{collections::HashMap, env};
 fn main() -> Result<(), Alert> {
     let args: Vec<String> = env::args().collect();
     let environment_vars: HashMap<String, String> = env::vars().collect();
-    let (config, version, log_level) = parse_args(args)?;
-    let cargo = Cargo::init(config, version, log_level, environment_vars)?;
+    let (config, version, log_level, updated) = parse_args(args)?;
+    let cargo = Cargo::init(config, version, log_level, environment_vars, updated)?;
     cargo.release()?;
     Ok(())
 }

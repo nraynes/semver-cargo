@@ -12,6 +12,7 @@ pub struct Cargo {
     version: Version,
     logger: Logger,
     env: HashMap<String, String>,
+    updated: bool,
 }
 
 impl Cargo {
@@ -20,6 +21,7 @@ impl Cargo {
         version: Version,
         level: LogLevel,
         env: HashMap<String, String>,
+        updated: bool,
     ) -> Result<Self, Alert> {
         if *config.publish() {
             env.get("CARGO_REGISTRY_TOKEN")
@@ -30,6 +32,7 @@ impl Cargo {
             version,
             logger: Logger::new(level),
             env,
+            updated,
         })
     }
 
@@ -53,24 +56,26 @@ impl Cargo {
     }
 
     pub fn release(&self) -> Result<(), Alert> {
-        // Attempt to install cargo set-version
-        self.install()?;
+        if *self.updated() || *self.config.act_on_no_update() {
+            // Attempt to install cargo set-version
+            self.install()?;
 
-        // Update version in Cargo.toml
-        if *self.config.set_version() {
-            self.set_version()?;
-            git::commit_all(
-                &format!(
-                    "semver-cargo bump cargo version to {}",
-                    self.version.short()
-                ),
-                &self.logger(),
-            )?;
-        }
+            // Update version in Cargo.toml
+            if *self.config.set_version() {
+                self.set_version()?;
+                git::commit_all(
+                    &format!(
+                        "semver-cargo bump cargo version to {}",
+                        self.version.short()
+                    ),
+                    &self.logger(),
+                )?;
+            }
 
-        // Publish crate.
-        if *self.config.publish() {
-            self.publish()?;
+            // Publish crate.
+            if *self.config.publish() {
+                self.publish()?;
+            }
         }
         Ok(())
     }

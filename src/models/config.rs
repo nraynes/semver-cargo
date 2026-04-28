@@ -16,4 +16,7 @@ pub struct Config {
 
     #[serde(default = "default_false")]
     publish: bool,
+
+    #[serde(default = "default_false")]
+    act_on_no_update: bool,
 }
