@@ -49,7 +49,7 @@
     "push_changes": true,
     "plugin_location": ".release",
     "plugins": {
-        "semver-cargo": {
+        "semver_cargo": {
             "set_version": true,
             "publish": true
         }
