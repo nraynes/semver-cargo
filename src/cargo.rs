@@ -14,6 +14,23 @@ impl Cargo {
         }
     }
 
+    pub fn install(&self) -> Result<(), Alert> {
+        run_command(
+            "curl",
+            [
+                "--proto",
+                "'=https'",
+                "--tlsv1.2",
+                "-sSf",
+                "https://sh.rustup.rs",
+                "|",
+                "sh",
+            ],
+            Some(&self.logger),
+        )?;
+        Ok(())
+    }
+
     pub fn set_version(&self, version: &Version) -> Result<(), Alert> {
         run_command(
             "cargo",

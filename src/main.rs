@@ -7,6 +7,10 @@ fn main() -> Result<(), Alert> {
     let (config, version, log_level) = parse_args(args)?;
     let cargo = Cargo::new(log_level);
 
+    // Attempt to install cargo via rustup
+    cargo.install()?;
+
+    // Update version in Cargo.toml
     if *config.set_version() {
         cargo.set_version(&version)?;
         git::commit_all(
@@ -14,6 +18,8 @@ fn main() -> Result<(), Alert> {
             &cargo.logger(),
         )?;
     }
+
+    // Publish crate.
     if *config.publish() {
         cargo.publish()?;
     }
