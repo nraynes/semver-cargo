@@ -1,5 +1,5 @@
 use semver_cargo::{Cargo, parse_args};
-use semver_common::Alert;
+use semver_common::{Alert, git};
 use std::env;
 
 fn main() -> Result<(), Alert> {
@@ -9,6 +9,10 @@ fn main() -> Result<(), Alert> {
 
     if *config.set_version() {
         cargo.set_version(&version)?;
+        git::commit_all(
+            &format!("semver-cargo bump cargo version to {}", version.short()),
+            &cargo.logger(),
+        )?;
     }
     if *config.publish() {
         cargo.publish()?;

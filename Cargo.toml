@@ -1,6 +1,6 @@
 [package]
 name = "semver-cargo"
-version = "0.3.4"
+version = "0.4.0"
 edition = "2024"
 authors = ["Nicholas Raynes"]
 description = "A SemVer-Release plugin for updating and publish cargo project releases."
@@ -12,6 +12,6 @@ categories = ["command-line-utilities", "development-tools"]
 [dependencies]
 derive-getters = "0.5.0"
 r_log = "0.2.3"
-semver-common = "0.5.8"
+semver-common = "0.6.8"
 serde = { version = "1.0.228", features = ["derive"] } 
 serde_json = "1.0.149"

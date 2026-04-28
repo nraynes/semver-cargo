@@ -1,6 +1,8 @@
+use derive_getters::Getters;
 use r_log::{LogLevel, Logger};
 use semver_common::{Alert, Version, run_command};
 
+#[derive(Getters)]
 pub struct Cargo {
     logger: Logger,
 }
