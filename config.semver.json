@@ -47,5 +47,10 @@
     "git_auth_method": "GITHUB",
     "commit_changes": true,
     "push_changes": true,
-    "plugins": {}
+    "plugins": {
+        "semver-cargo": {
+            "set_version": true,
+            "publish": true
+        }
+    }
 }
