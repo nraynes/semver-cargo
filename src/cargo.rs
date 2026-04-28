@@ -23,6 +23,10 @@ impl Cargo {
         Ok(())
     }
 
+    pub fn get_version(&self) -> Result<String, Alert> {
+        run_command("cargo", ["--version"], Some(&self.logger))
+    }
+
     pub fn set_version(&self, version: &Version) -> Result<(), Alert> {
         run_command(
             "cargo",

@@ -10,6 +10,9 @@ fn main() -> Result<(), Alert> {
     // Attempt to install cargo via rustup
     cargo.install()?;
 
+    let out = cargo.get_version()?;
+    panic!("{}", out);
+
     // Update version in Cargo.toml
     if *config.set_version() {
         cargo.set_version(&version)?;
