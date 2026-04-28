@@ -2,5 +2,6 @@
 
 ## Maintenance Items
 
+- chore: added crate details
 - chore: updated version
 
