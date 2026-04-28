@@ -1,7 +1,6 @@
-# Version: v0.2.0
+# Version: v0.4.7
 
-## Maintenance Items
+## Patches
 
-- chore: added crate details
-- chore: updated version
+- fix: updated release
 
