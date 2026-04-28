@@ -7,11 +7,8 @@ fn main() -> Result<(), Alert> {
     let (config, version, log_level) = parse_args(args)?;
     let cargo = Cargo::new(log_level);
 
-    // Attempt to install cargo via rustup
+    // Attempt to install cargo set-version
     cargo.install()?;
-
-    let out = cargo.get_version()?;
-    panic!("{}", out);
 
     // Update version in Cargo.toml
     if *config.set_version() {

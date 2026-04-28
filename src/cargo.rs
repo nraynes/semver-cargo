@@ -15,16 +15,8 @@ impl Cargo {
     }
 
     pub fn install(&self) -> Result<(), Alert> {
-        run_command(
-            "sh",
-            ["-c", "curl https://sh.rustup.rs -sSf"],
-            Some(&self.logger),
-        )?;
+        run_command("cargo", ["install", "cargo-edit"], Some(&self.logger))?;
         Ok(())
-    }
-
-    pub fn get_version(&self) -> Result<String, Alert> {
-        run_command("cargo", ["--list"], Some(&self.logger))
     }
 
     pub fn set_version(&self, version: &Version) -> Result<(), Alert> {
