@@ -16,16 +16,8 @@ impl Cargo {
 
     pub fn install(&self) -> Result<(), Alert> {
         run_command(
-            "curl",
-            [
-                "--proto",
-                "'=https'",
-                "--tlsv1.2",
-                "-sSf",
-                "https://sh.rustup.rs",
-                "|",
-                "sh",
-            ],
+            "sh",
+            ["-c", "curl https://sh.rustup.rs -sSf"],
             Some(&self.logger),
         )?;
         Ok(())
