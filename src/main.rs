@@ -13,6 +13,7 @@ fn main() -> Result<(), Alert> {
         args.log_level,
         environment_vars,
         args.updated.parse()?,
+        args.dry_run.parse()?,
     )?;
     cargo.release()?;
     Ok(())

@@ -12,4 +12,7 @@ pub struct Args {
     pub log_level: LogLevel,
     /// Whether or not the version was updated.
     pub updated: String,
+    /// Flag specifying whether to do dry run publish.
+    #[arg(short, long, default_value = "false")]
+    pub dry_run: String,
 }
