@@ -68,7 +68,7 @@ impl Cargo {
                         "semver-cargo bump cargo version to {}",
                         self.version.short()
                     ),
-                    &self.logger(),
+                    self.logger(),
                 )?;
             }
 

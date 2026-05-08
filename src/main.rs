@@ -1,12 +1,19 @@
-use semver_cargo::{Cargo, parse_args};
+use clap::Parser;
+use semver_cargo::{Args, Cargo, Config};
 use semver_common::Alert;
 use std::{collections::HashMap, env};
 
 fn main() -> Result<(), Alert> {
-    let args: Vec<String> = env::args().collect();
+    let args: Args = Args::parse();
     let environment_vars: HashMap<String, String> = env::vars().collect();
-    let (config, version, log_level, updated) = parse_args(args)?;
-    let cargo = Cargo::init(config, version, log_level, environment_vars, updated)?;
+    let config: Config = serde_json::from_str(&args.config_json)?;
+    let cargo = Cargo::init(
+        config,
+        args.version,
+        args.log_level,
+        environment_vars,
+        args.updated.parse()?,
+    )?;
     cargo.release()?;
     Ok(())
 }

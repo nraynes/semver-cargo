@@ -1,7 +1,7 @@
+mod args;
 mod cargo;
 mod models;
-mod utils;
 
+pub use args::Args;
 pub use cargo::Cargo;
 pub use models::Config;
-pub use utils::parse_args;
