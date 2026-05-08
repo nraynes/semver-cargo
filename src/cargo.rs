@@ -67,7 +67,6 @@ impl Cargo {
 
     /// Run the full release process for cargo.
     pub fn release(&self) -> Result<(), Alert> {
-        println!("{}", serde_json::to_string(&self.config)?);
         if self.updated || *self.config.act_on_no_update() {
             // Attempt to install cargo set-version
             self.install()?;
