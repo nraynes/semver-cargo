@@ -30,8 +30,8 @@ clap_mangen = "0.3.0"
 [build-dependencies]
 clap = { version = "4.6.1", features = ["derive"] }
 clap_mangen = "0.3.0"
-r_log = "0.3.3"
-semver-common = "1.2.2"
+r_log = "0.3.5"
+semver-common = "1.2.3"
 
 [dev-dependencies]
 assert_fs = "1.1.3"

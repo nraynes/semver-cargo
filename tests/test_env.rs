@@ -95,7 +95,7 @@ impl TestEnv {
             .cargo_bin
             .arg(config_contents)
             .arg(serde_json::to_string(&version).unwrap())
-            .arg("info")
+            .arg("INFO")
             .arg(updated)
             .arg("-d")
             .arg("true")
