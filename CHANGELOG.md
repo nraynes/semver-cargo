@@ -1,6 +1,15 @@
-# Version: v0.5.0
+# Version: v0.5.3
 
-## Features
+## Patches
 
-- feat: added no update check
+- fix: added integration tests and documentation
+- fix: fixed problem with parsing log level
+- fix: updated cargo plugin
+
+## Maintenance Items
+
+- chore: added repo tools
+- chore: fixed release
+- chore: removed debug line
+- chore: updated semver cargo in project
 
