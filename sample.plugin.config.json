@@ -1,0 +1,7 @@
+{
+    "semver-cargo": {
+        "set_version": true,
+        "publish": true,
+        "act_on_no_update": false
+    }
+}
