@@ -1,10 +1,8 @@
 # Version: v0.5.4
 
-## Patches
-
-- fix: updated semver common version
-
 ## Maintenance Items
 
-- chore: added sample plugin config
+- chore: fixed semver
+- chore: update semver bins
+- chore: updated release bins
 
